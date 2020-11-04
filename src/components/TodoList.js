@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 import Todo from './Todo'
 
-export default function TodoList({ todos, removeTodo, toggleTodo }) {
+export default function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
   return (
     <Paper>
       <List>
@@ -20,7 +20,8 @@ export default function TodoList({ todos, removeTodo, toggleTodo }) {
               key={todo.id} 
               completed={todo.completed}
               removeTodo={removeTodo}
-              toggleTodo={toggleTodo}  
+              toggleTodo={toggleTodo}
+              editTodo={editTodo}
             />
             <Divider />
           </>
