@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Typography, 
   Paper,
@@ -13,13 +13,20 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default function TodoApp() {
 
-  const initialTodos = [
-    { id: 1, task: 'Learn React Hooks', completed: false, },
-    { id: 2, task: 'Learn Data Structures', completed: false, },
-    { id: 3, task: 'Learn Redux', completed: true, },
-  ]
+  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]')
+  
+  // [
+  //   { id: 1, task: 'Learn React Hooks', completed: false, },
+  //   { id: 2, task: 'Learn Data Structures', completed: false, },
+  //   { id: 3, task: 'Learn Redux', completed: true, },
+  // ]
 
   const [todos, setTodos] = useState(initialTodos)
+
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todos), [todos])
+    
+  })
 
   const addTodo = newTodoText => {
     setTodos ([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
