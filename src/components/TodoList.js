@@ -6,6 +6,7 @@ import {
   ListItemText,
   Divider,
 } from '@material-ui/core'
+import Todo from './Todo'
 
 export default function TodoList({ todos }) {
   return (
@@ -13,11 +14,7 @@ export default function TodoList({ todos }) {
       <List>
         {todos.map(todo => (
           <>
-            <ListItem>
-              <ListItemText>
-                {todo.task}
-              </ListItemText>
-            </ListItem>
+            <Todo task={todo.task} key={todo.id} completed={todo.completed} />
             <Divider />
           </>
         ))}

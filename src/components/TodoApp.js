@@ -4,7 +4,7 @@ import {
   Paper,
   AppBar,
   Toolbar,
-  Grid
+  Grid,
 } from '@material-ui/core'
 import TodoList from './TodoList'
 import TodoForm from './TodoForm'
@@ -41,8 +41,15 @@ export default function TodoApp() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} />
+
+      <Grid container justify='center' style={{ marginTop: '1rem'}} >
+        <Grid item xs={11} md={8} lg={4} >
+          <TodoForm addTodo={addTodo} />
+          <TodoList todos={todos} />
+        </Grid>
+      </Grid>
+
+      
     </Paper>
 
     
