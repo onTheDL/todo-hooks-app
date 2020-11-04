@@ -12,13 +12,17 @@ import {
 } from '@material-ui/icons'
 
 
-export default function Todo({ task, completed }) {
+export default function Todo({ id, task, completed, removeTodo, toggleTodo }) {
   return (
     <ListItem>
-      <Checkbox tabIndex={-1} checked={completed} /> 
-      <ListItemText style={{textDecoration: completed ? 'line-through': 'none'}} >{task}</ListItemText>
+      <Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)} /> 
+      <ListItemText 
+        style={{textDecoration: completed ? 'line-through': 'none'}} 
+      >
+        {task}
+      </ListItemText>
       <ListItemSecondaryAction>
-        <IconButton aria-label='Delete'>
+        <IconButton aria-label='Delete' onClick={() => removeTodo(id)} >
           <DeleteIcon />
         </IconButton>
         <IconButton aria-label='Edit'>
