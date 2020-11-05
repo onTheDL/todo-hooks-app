@@ -1,55 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react';
+import useTodoState from '../hooks/useTodoState';
 import {
   Typography, 
   Paper,
   AppBar,
   Toolbar,
   Grid,
-} from '@material-ui/core'
-import TodoList from './TodoList'
-import TodoForm from './TodoForm'
-import { v4 as uuidv4 } from 'uuid'
-
+} from '@material-ui/core';
+import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 
 export default function TodoApp() {
 
-  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]')
-  
-  // [
-  //   { id: 1, task: 'Learn React Hooks', completed: false, },
-  //   { id: 2, task: 'Learn Data Structures', completed: false, },
-  //   { id: 3, task: 'Learn Redux', completed: true, },
-  // ]
+  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
 
-  const [todos, setTodos] = useState(initialTodos)
+  const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(initialTodos);
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todos), [todos])
-    
-  })
+  });
 
-  const addTodo = newTodoText => {
-    setTodos ([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
-  }
-
-  const removeTodo = (todoId) => {
-    //filter out removed todo
-    const updatedTodos = todos.filter(todo => todo.id !== todoId)
-    //call setTodos with new todos array
-    setTodos(updatedTodos)
-  }
-
-  const toggleTodo = (todoId) => {
-    const updatedTodos = todos.map(todo => todo.id === todoId ? { ...todo, completed: !todo.completed} : todo )
-
-    setTodos(updatedTodos)
-  }
-
-  const editTodo = (todoId, newTask) => {
-    const updatedTodos = todos.map(todo => todo.id === todoId ? { ...todo, task: newTask } : todo )
-
-    setTodos(updatedTodos)
-  }
+  
 
   return (
     <Paper

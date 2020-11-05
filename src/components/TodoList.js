@@ -2,8 +2,6 @@ import React from 'react'
 import { 
   Paper, 
   List,
-  ListItem,
-  ListItemText,
   Divider,
 } from '@material-ui/core'
 import Todo from './Todo'
@@ -16,10 +14,8 @@ export default function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
           {todos.map((todo, i) => (
             <>
               <Todo
-                id={todo.id}
-                task={todo.task} 
-                key={todo.id} 
-                completed={todo.completed}
+                {...todo} 
+                key={todo.id}
                 removeTodo={removeTodo}
                 toggleTodo={toggleTodo}
                 editTodo={editTodo}
