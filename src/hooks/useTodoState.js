@@ -3,8 +3,9 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default function useTodoState(initialTodos) {
   const [todos, setTodos] = useLocalStorageState('todos', initialTodos)
+
   const addTodo = newTodoText => {
-    setTodos ([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
+    setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
   }
   const removeTodo = (todoId) => {
     //filter out removed todo
