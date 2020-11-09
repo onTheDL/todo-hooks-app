@@ -4,8 +4,6 @@
 
 The Todo Hooks App covers the basic principles of getting, updating, and deleting state using React Hooks. Data is persisted through local storage.
 
-[Static site](festive-tub.surge.sh)
-
 ## Installation
 ```
 git clone https://github.com/onTheDL/todo-hooks-app

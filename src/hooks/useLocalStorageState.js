@@ -7,7 +7,7 @@ export default function useLocalStorageState(key, defaultVal) {
     let val;
     try {
     val = JSON.parse(window.localStorage.getItem(key) || String(defaultVal))
-    } 
+    }
     catch(e){
       val = defaultVal
     }
