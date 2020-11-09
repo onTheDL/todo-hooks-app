@@ -14,7 +14,7 @@ export default function TodoForm() {
     <Paper style={{margin: '1rem 0', paddi: '0 1rem'}}>
       <form onSubmit={(e) => {
         e.preventDefault()
-        dispatch({ type: 'ADD', task: value })
+        dispatch({ type: 'ADD', task: value }) 
         reset()
       }}>
         <TextField
@@ -23,6 +23,7 @@ export default function TodoForm() {
           margin='normal'
           label='Add New Todo'
           fullWidth
+        
         />
       </form>
       
