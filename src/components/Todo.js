@@ -13,12 +13,12 @@ import {
 } from '@material-ui/icons'
 
 import useToggleState from '../hooks/useToggleState'
-import {TodosContext} from '../contexts/todos.context'
+import {DispatchContext} from '../contexts/todos.context'
 
 
 
 export default function Todo({ id, task, completed }) {
-  const { removeTodo, toggleTodo } = useContext(TodosContext)
+  const dispatch = useContext(DispatchContext)
   const [isEditing, toggle] = useToggleState(false)
 
   return (
@@ -26,14 +26,19 @@ export default function Todo({ id, task, completed }) {
       {isEditing ? <EditTodoForm id={id}  task={task} toggleEditForm={toggle} /> 
       : (
         <>
-          <Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)} /> 
+          <Checkbox 
+            tabIndex={-1} 
+            checked={completed} 
+            onClick={() => dispatch({type: 'TOGGLE', id: id})} /> 
           <ListItemText 
             style={{textDecoration: completed ? 'line-through': 'none'}} 
           >
             {task}
           </ListItemText>
           <ListItemSecondaryAction>
-            <IconButton aria-label='Delete' onClick={() => removeTodo(id)} >
+            <IconButton 
+              aria-label='Delete' 
+              onClick={() => dispatch({ type:'REMOVE', id: id })} >
               <DeleteIcon />
             </IconButton>
             <IconButton aria-label='Edit' onClick={toggle}>

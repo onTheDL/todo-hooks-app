@@ -4,17 +4,17 @@ import {
   TextField, 
 } from '@material-ui/core'
 import useInputState from '../hooks/useInputState'
-import { TodosContext } from '../contexts/todos.context'
+import { DispatchContext } from '../contexts/todos.context'
 
 export default function TodoForm() {
-  const { addTodo } = useContext(TodosContext)
+  const dispatch = useContext(DispatchContext)
   const [value, handleChange, reset] = useInputState('')
 
   return (
-    <Paper style={{margin: '1rem 0', padding: '0 1rem'}}>
+    <Paper style={{margin: '1rem 0', paddi: '0 1rem'}}>
       <form onSubmit={(e) => {
         e.preventDefault()
-        addTodo(value)
+        dispatch({ type: 'ADD', task: value })
         reset()
       }}>
         <TextField
